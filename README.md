@@ -32,7 +32,7 @@ exactly the same score the original authors reported, so it counts as a successf
 6. The authors then *taught* a computer program to look at those 561 numbers and say
    which of the six movements the clip came from.
 
-## 2. Results
+## 2. Methodology
 
 The 30 people were divided into two groups **of people, not of clips**:
 
