@@ -15,46 +15,6 @@ Dataset
 -------
 UCI Machine Learning Repository, id 240:
 https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones
-
-What the paper did (and what this file reproduces)
---------------------------------------------------
-* 30 volunteers (19-48 years) wearing a waist-mounted Samsung Galaxy S II.
-  Accelerometer + gyroscope sampled at 50 Hz, noise filtered (median filter +
-  3rd order Butterworth low-pass, 20 Hz), gravity separated with a 0.3 Hz
-  Butterworth low-pass (paper, Section 2.1).
-* Sliding windows of 2.56 s (128 samples) with 50 % overlap -> one 561-feature
-  vector per window, computed from 17 time/frequency signals with the measures
-  mean, std, mad, max, min, sma, energy, iqr, entropy, arCoeff, correlation,
-  maxFreqInd, meanFreq, skewness, kurtosis, energyBand and angle.
-* The dataset is split 70 % / 30 % *by subject*: 21 subjects -> 7352 training
-  patterns, 9 subjects -> 2947 test patterns.
-* Classifier = multiclass SVM: binary RBF ("Gaussian kernel") SVMs generalised
-  with a One-Vs-All (OVA) scheme; hyperparameters chosen by 10-fold cross
-  validation (paper, Section 3).
-* Reported result (paper, Table 4, test set of 2947 patterns):
-      overall accuracy 96 %  (2840/2947 correct = 96.37 %)
-      recall    WK 99 %  WU 96 %  WD 98 %  ST 88 %  SD 97 %  LD 100 %
-      precision WK 96 %  WU 98 %  WD 99 %  ST 97 %  SD 90 %  LD 100 %
-
-Running this file
------------------
-    python har_mcsvm_recreation.py               # full study protocol: 10-fold CV
-                                                 # grid search over 12 (C, gamma)
-                                                 # settings (~4-15 min, multicore)
-    python har_mcsvm_recreation.py --grid fast   # smaller grid (~1/3 of the cost)
-    python har_mcsvm_recreation.py --quick       # single hyper-parameter set (~1 min)
-    python har_mcsvm_recreation.py --list-checks # offline checks only, no training
-
-The script is completely self-contained:
-    1. bootstraps the few third-party packages it needs (numpy/scipy/scikit-learn),
-    2. downloads + unpacks the official 561-feature dataset if it is not cached,
-    3. verifies the dataset against the numbers published in the paper/README,
-    4. trains the multiclass (OVA, RBF) SVM exactly as described in Section 3,
-    5. evaluates it on the official 2947-pattern test set and prints the paper's
-       Table 4 next to the reproduced confusion matrix,
-    6. runs a small test-suite (dataset integrity, paper-table self-consistency,
-       reproduced accuracy, statistical agreement with the paper, ...) and exits
-       with code 0 (all checks passed) or 1 (some check failed).
 """
 
 from __future__ import annotations
