@@ -1,43 +1,11 @@
-# Can a phone tell what you are doing?
-
-**Short answer: yes — and this project shows it. A computer can be taught to recognise
-walking, climbing stairs, sitting, standing and lying down from the movement of a phone
-worn on the waist, and it gets it right about 97 times out of 100.**
+# Independent Replication and Verification of Smartphone-Based Human Activity Recognition Using Multiclass Support Vector Machines
 
 This repository is a careful re-run of a well-known scientific experiment. The original
 experiment is the UCI *Human Activity Recognition Using Smartphones* study (2013), and
 this project repeats it from scratch with a single program. It ends up with almost
 exactly the same score the original authors reported, so it counts as a successful copy.
 
-**You do not need to know how to program to use this.** You only need to copy and paste
-two lines into a black window on your computer (called a *terminal*) — there is a
-step-by-step guide in [section 5](#5-run-it-yourself-step-by-step). Everything else in
-this file explains what the program is doing and what the numbers on the screen mean.
-
-If you are looking for the mathematics and the formal experiment details, they belong to
-the [original paper](#13-where-the-paper-and-the-data-come-from), not to this README —
-this file is written for a person who has never written a line of code.
-
-**What is in this file**
-
-1. [What the original experiment did](#1-what-the-original-experiment-did)
-2. [Why the result is believable](#2-why-the-result-is-believable-the-clever-part-of-the-design)
-3. [How the program learns](#3-how-the-program-learns-and-how-its-settings-get-chosen)
-4. [The result, in one table](#4-the-result-in-one-table)
-5. [Run it yourself (step by step)](#5-run-it-yourself-step-by-step)
-6. [What appears on the screen, block by block](#6-what-appears-on-the-screen-block-by-block)
-7. [What the numbers mean, in ordinary words](#7-what-the-numbers-mean-in-ordinary-words)
-8. [How we know the numbers are not faked](#8-how-we-know-the-numbers-are-not-faked)
-9. [Why our numbers differ slightly from the paper's](#9-where-our-numbers-differ-from-the-papers-and-why-that-is-normal)
-10. [If something goes wrong](#10-if-something-goes-wrong)
-11. [Every technical word explained](#11-words-that-appear-on-screen-in-plain-language)
-12. [Optional extra settings](#12-optional-the-buttons-you-can-press)
-13. [Where the paper and the data come from](#13-where-the-paper-and-the-data-come-from)
-14. [Honest limits of this recreation](#14-honest-limits-of-this-recreation)
-
----
-
-## 1. What the original experiment did
+## 1. Original Experiment
 
 1. **30 people** (aged 19-48) strapped a mobile phone into a pouch on their waist.
 2. They were asked to perform **six everyday movements**, one after another:
@@ -64,11 +32,7 @@ this file is written for a person who has never written a line of code.
 6. The authors then *taught* a computer program to look at those 561 numbers and say
    which of the six movements the clip came from.
 
-In everyday words: one clip plus its correct answer is a **worked example**. All the
-clips together are called the **dataset**. Teaching a program from worked examples like
-this is what people usually mean by "artificial intelligence" or "machine learning".
-
-## 2. Why the result is believable (the clever part of the design)
+## 2. Results
 
 The 30 people were divided into two groups **of people, not of clips**:
 
@@ -76,15 +40,13 @@ The 30 people were divided into two groups **of people, not of clips**:
 * **9 people** — their clips (2,947 clips) were locked away and used only for the
   *final test*.
 
-That is the difference between practising on questions you have already seen and sitting
-a real exam on questions you have not. Because the final test uses **nine people the
-program has never met**, the score answers an honest question: *"how well does this work
-on a new person?"* — not *"how well does it remember people it has already seen?"*
+The final test uses **nine people the program has never seen** so the score sells us *"how well this works
+on a new person?"* — not *"how well it remembers people it has already seen?"*
 
 The nine people in the exam group are exactly the ones the original authors chose, so
 the comparison between their score and ours is fair.
 
-## 3. How the program learns, and how its settings get chosen
+## 3. Learning Method
 
 The learning method used here is a classic, widely used one called a **support-vector
 machine** (usually shortened to **SVM**). In plain terms, it is a program that draws
@@ -116,11 +78,11 @@ the same pile, so an almost-copy of a quiz question can never sit in the learnin
 
 ---
 
-## 4. The result, in one table
+## 4. Results
 
 | What was measured on the 2,947 exam clips (9 unseen people) | This project | The original paper |
 | --- | --- | --- |
-| Clips labelled correctly | **2,855 (96.88 %)** | 2,840 (96.37 %, printed as "96 %") |
+| Clips labelled correctly | **2,855 (96.88%)** | 2,840 (96.37 %, printed as "96%") |
 | Looked at out of every 100 clips | **about 97 right** | about 96 right |
 | Verdict | only 0.5 points away from the published result — **an accurate copy** | — |
 
@@ -130,7 +92,7 @@ waist, someone sitting very still and someone standing very still look almost id
 
 ---
 
-## 5. Run it yourself (step by step)
+## 5. Run it yourself
 
 You will need about 15 minutes the first time. After that, a fresh result takes under a
 minute.
@@ -183,22 +145,15 @@ python har_mcsvm_recreation.py --list-checks  # no learning at all, just check t
 RESULT: the multiclass SVM reproduces the paper's 96 % on the official test set.
 ```
 
-That is the whole "did it work?" answer: every check passed and the score matches the
-published one. If you instead see `RESULT: at least one check failed`, the line just
-above it names the check that failed and shows the numbers involved — see
-[section 10](#10-if-something-goes-wrong).
-
 > If you see *"Python was not found"* or *"'python' is not recognized"*, the PATH box in
 > Step 2 was probably left unticked. Re-run the Python installer and tick it, or simply
 > try typing `py` instead of `python`.
 
 ---
 
-## 6. What appears on the screen, block by block
+## 6. Output
 
-Below is one real, short run (the `--quick` version, trimmed to the interesting parts)
-with a plain-English note after each block.
-
+Here is how to interpret the output of running the program.
 ```text
 paper    : A Public Domain Dataset for Human Activity Recognition Using Smartphones
 dataset  : UCI ML Repository id 240 ...
@@ -307,117 +262,23 @@ RESULT: the multiclass SVM reproduces the paper's 96 % on the official test set.
 
 ---
 
-## 7. What the numbers mean, in ordinary words
+## 7. Data Interpretation
 
 Every percentage in the print-out comes from counting clips on the answer sheet. Nothing
 is estimated or summarised by a library; the program adds up the boxes itself.
 
 | The number on screen | What it means in ordinary words | This run | The paper |
 | --- | --- | --- | --- |
-| overall accuracy | out of all 2,947 exam clips, how many got the right label | 96.88 % (2,855) | 96.37 % (2,840) |
-| recall for one activity | out of the clips where the person *really was* doing that activity, how many did we spot? | 99 / 98 / 96 / 90 / 98 / 100 % | 99 / 96 / 98 / 88 / 97 / 100 % |
-| precision for one activity | when the program *says* that activity, how often is it right? | 97 / 96 / 100 / 98 / 92 / 100 % | 96 / 98 / 99 / 97 / 90 / 100 % |
-| CV accuracy | the average score of the practice rounds on the learning people only | 95.69 % | used the same routine to pick dials |
-| confidence range | the range the true score is likely to fall in, given that only 2,947 clips were tested; the paper's number sits inside it | 96.19 % - 97.45 % | 96.37 % (inside) |
-| per-subject accuracy | the same score calculated separately for each of the nine exam people | 92.4 % - 99.7 % | not reported per person |
-
-A quick way to read the two tables of numbers:
-
-* **Percentage on the diagonal is boring and good** — those are correct guesses.
-* **Everything off the diagonal is a mix-up.** The program said column, the truth was
-  row.
-* Row 4, column 5 in both tables (46 in ours, 57 in theirs) is the famous
-  Sitting-vs-Standing confusion: two still poses that look almost the same when you only
-  measure the waist.
+| Overall accuracy | out of all 2,947 exam clips, how many got the right label | 96.88% (2,855) | 96.37% (2,840) |
+| Recall for one activity | out of the clips where the person *really was* doing that activity, how many did we spot? | 99 / 98 / 96 / 90 / 98 / 100 % | 99 / 96 / 98 / 88 / 97 / 100% |
+| Precision for one activity | when the program *says* that activity, how often is it right? | 97 / 96 / 100 / 98 / 92 / 100% | 96 / 98 / 99 / 97 / 90 / 100% |
+| CV accuracy | the average score of the practice rounds on the learning people only | 95.69% | used the same routine to pick dials |
+| Confidence range | the range the true score is likely to fall in, given that only 2,947 clips were tested; the paper's number sits inside it | 96.19% - 97.45% | 96.37% (inside) |
+| Per-subject accuracy | the same score calculated separately for each of the nine exam people | 92.4% - 99.7% | not reported per person |
 
 ---
 
-## 8. How we know the numbers are not faked
-
-A score on its own proves nothing — anyone can print "96 %". So the program ships with
-**19 automatic checks** that either pass or fail, and the run reports how many of them
-passed. The count depends on how much work it did:
-
-| Situation | Checks run |
-| --- | --- |
-| `--list-checks` (no learning at all) | 11 of 19 |
-| `--quick` (one dial setting) | 18 of 19 |
-| full run (dial search) | 19 of 19 |
-
-The remaining checks only exist when the program has actually learned something — for
-example "did the score match the paper's?" cannot be answered before there is a score.
-
-**The 11 checks that only look at the data**
-
-1. the two data files have exactly the expected shapes (7,352 training clips and 2,947
-   test clips, each described by 561 numbers);
-2. all 561 columns are present and named;
-3. the six activity names are the right six, in the right order;
-4. no broken or missing numbers anywhere, and all values inside the allowed range;
-5. the number of clips for each activity matches the published counts;
-6. the 30 people were really split 21 / 9, with nobody appearing in both groups;
-7. the nine exam people are exactly the ones the paper used (people 2, 4, 9, 10, 12, 13,
-   18, 20 and 24);
-8. the clip length and overlap match what the paper describes;
-9. the paper's printed table adds up to the published clip counts (so we read it
-   correctly);
-10. the paper's table really does produce the published per-activity percentages; and
-11. the paper's table really does produce the published 96 % — in other words, the target
-    we are aiming at is the target the paper published (2,840 correct out of 2,947).
-
-**The 7 extra checks added once the program has learned**
-
-12. **the result is repeatable:** learning the same thing a second time gives exactly the
-    same answers, clip for clip — so the score is not luck;
-13. **we hit the target:** our score is within 2 points of the paper's (adjustable);
-14. **the gap is not meaningful:** the paper's number lies inside the range of scores our
-    run could plausibly have produced with only 2,947 test clips;
-15. **we beat the older method** the paper compares itself against (90.8 %);
-16. **we match activity by activity**, within 5 points of the paper's per-activity
-    percentages (adjustable);
-17. **we make the same mistake as the paper:** Sitting/Standing is the worst mix-up here
-    too;
-18. **the practice score and the exam score agree** (95.7 % vs 96.9 %) — a big gap would
-    suggest the dials were tuned to the exam, which would make the score meaningless.
-
-**The final check, only in a full run**
-
-19. **the dials chosen really are the best of the 12** that were tried — the same rule the
-    paper used. (`--quick` skips the search, so there is nothing to check.)
-
-Why bother with all this? Because picture-perfect reproduction is not the goal — *honest*
-reproduction is. The checks make it hard for a mistake or an accidental shortcut to hide.
-If a check fails, the program says so in plain words and exits with an error signal
-instead of quietly printing a nice-looking percentage.
-
-| Exit signal | Meaning in plain words |
-| --- | --- |
-| `0` | everything passed — the recreation worked |
-| `1` | at least one check failed (details are on screen) |
-| `2` | the data could not be found or downloaded, so nothing ran |
-
----
-
-## 9. Where our numbers differ from the paper's, and why that is normal
-
-Our run and the paper's run are two different programs. Same idea, same data, same rules
-— but not the same lines of code. The original authors wrote their own implementation of
-the method (their later work even re-writes it for low-power phone chips), whereas this
-project uses a standard, widely used open-source library. Tiny differences in how numbers
-are rounded inside such a program can move a handful of clips from one box to another.
-
-What that looks like in practice: 15 of the 36 boxes in the answer sheet differ slightly,
-most by one or two clips, with a total of 74 clips out of 2,947 (2.5 %) placed differently
-and 0.5 points of overall score. Crucially, the *shape* of the mistakes is the same — the
-same activities are easy, the same pair is hard, and the same nine people are the exam.
-
-One more honest caveat: the paper is a PDF, and the table was read out of its text. Where
-the layout was ambiguous, the program keeps the reading that is consistent with the
-published totals and percentages — that is what checks 9 to 11 above test.
-
----
-
-## 10. If something goes wrong
+## 8. Troubleshooting
 
 | What you see | What it means and what to do |
 | --- | --- |
@@ -431,32 +292,7 @@ published totals and percentages — that is what checks 9 to 11 above test.
 
 ---
 
-## 11. Words that appear on screen, in plain language
-
-| Word | What it actually means |
-| --- | --- |
-| dataset | the collection of recordings and their correct answers |
-| clip, window, example, pattern | one ~2.6 second slice of movement and the activity it belongs to |
-| feature | one of the 561 numbers that describe a clip |
-| model, classifier, trained program | the thing after learning — the program that now guesses activities |
-| learning, training, fitting | adjusting the program using the 21 people's clips |
-| test set, exam clips | the 9 people's 2,947 clips, locked away until the very end |
-| practice rounds, cross-validation ("CV") | splitting the learning clips into 10 piles so the program can quiz itself honestly |
-| dials, hyper-parameters, `C` and `gamma` | the two settings that must be chosen before learning; `C` = how strictly to fit the examples, `gamma` = how curvy the boundaries may be |
-| support vector | a learning clip the program kept as a reference example |
-| accuracy | share of all exam clips labelled correctly |
-| recall | share of the clips of one activity that were actually spotted |
-| precision | share of the clips labelled as one activity that really were that activity |
-| confusion matrix, answer sheet, Table 4 | the two-way tally of "true activity" versus "guessed activity" |
-| confidence interval | the range the true score plausibly lies in, given the limited number of test clips |
-| library, package | ready-made code written by other people that this program re-uses (here: `numpy`, `scipy`, `scikit-learn`) |
-| terminal, shell, PowerShell, command line | the black text window where you type commands |
-| flag, option, `--quick` and friends | extra words added after the command name to change how it runs |
-| exit code | the tiny number the program hands back to the computer to say "all good" (0) or "something failed" (1 or 2) |
-
----
-
-## 12. Optional: the buttons you can press
+## 9. Extras
 
 You can ignore this section completely — the plain command from section 5 already runs
 the full experiment the way the paper describes it. These extra words are for curiosity
@@ -481,16 +317,16 @@ or for slower/faster machines.
 
 ---
 
-## 13. Where the paper and the data come from
+## 10. Sources
 
-**The experiment being re-run**
+**Original Experiment**
 
 > D. Anguita, A. Ghio, L. Oneto, X. Parra and J. L. Reyes-Ortiz. *A Public Domain Dataset
 > for Human Activity Recognition Using Smartphones.* ESANN 2013, Bruges (Belgium),
 > 24-26 April 2013, pp. 437-442.
 > <https://www.esann.org/sites/default/files/proceedings/legacy/es2013-84.pdf>
 
-**The data**
+**Dataset**
 
 > Reyes-Ortiz, J., Anguita, D., Ghio, A., Oneto, L., & Parra, X. (2013).
 > *Human Activity Recognition Using Smartphones* [Dataset]. UCI Machine Learning
@@ -522,7 +358,7 @@ this README is the gentler introduction.
 
 ---
 
-## 14. Honest limits of this recreation
+## 11. Limitations
 
 * **Only the thinking half is re-done here.** This project starts from the ready-made
   561-number files that the original authors published. It does *not* redo the cleaning,
