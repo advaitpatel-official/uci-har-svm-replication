@@ -270,7 +270,7 @@ is estimated or summarised by a library; the program adds up the boxes itself.
 | The number on screen | What it means in ordinary words | This run | The paper |
 | --- | --- | --- | --- |
 | Overall accuracy | out of all 2,947 exam clips, how many got the right label | 96.88% (2,855) | 96.37% (2,840) |
-| Recall for one activity | out of the clips where the person *really was* doing that activity, how many did we spot? | 99 / 98 / 96 / 90 / 98 / 100 % | 99 / 96 / 98 / 88 / 97 / 100% |
+| Recall for one activity | out of the clips where the person *really was* doing that activity, how many did we spot? | 99 / 98 / 96 / 90 / 98 / 100% | 99 / 96 / 98 / 88 / 97 / 100% |
 | Precision for one activity | when the program *says* that activity, how often is it right? | 97 / 96 / 100 / 98 / 92 / 100% | 96 / 98 / 99 / 97 / 90 / 100% |
 | CV accuracy | the average score of the practice rounds on the learning people only | 95.69% | used the same routine to pick dials |
 | Confidence range | the range the true score is likely to fall in, given that only 2,947 clips were tested; the paper's number sits inside it | 96.19% - 97.45% | 96.37% (inside) |
