@@ -196,7 +196,7 @@ Walking downstairs (WD)      4      6    410      0      0      0
 > practice rounds that used only the 21 learning people — before it ever touched the exam
 > clips. The names `C` and `gamma` are simply the two dials from section 3. "Support
 > vectors" is the count of learning clips the program decided to keep as reference
-> examples. "4.9 s" is how long the learning took.*
+> examples. "4.3 s" is how long the learning took.*
 
 ```text
 --- reproduced confusion matrix (this run, 2947 test patterns) ---
@@ -249,7 +249,7 @@ subject 24:  381 windows, accuracy  99.74 %
 [PASS] 70 % / 30 % split by subject                    21 train subjects / 9 test subjects
 [PASS] overall accuracy reproduces the paper's 96 %    96.88 % vs 96.37 % (delta +0.51 pp)
 ...
-18/18 checks passed
+19/19 checks passed
 
 total runtime: 30.1 s
 RESULT: the multiclass SVM reproduces the paper's 96 % on the official test set.
